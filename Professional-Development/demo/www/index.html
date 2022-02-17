@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>You Ming Docker Demo</title>
+
+        <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="page-header">
+                <h2>儲存資料</h2>
+                <div class="form-group">
+                    <label for="write-key">資料鍵名</label>
+                    <input type="text" class="form-control" id="write-key">
+                </div>
+                <div class="form-group">
+                    <label for="write-value">資料鍵值</label>
+                    <input type="text" class="form-control" id="write-value">
+                </div>
+                <button type="button" id="write" class="btn btn-default">儲存</button>
+            </div>
+            <div class="page-header">
+                <h2>同步資料</h2>
+                <button type="button" id="sync" class="btn btn-default">同步</button>
+            </div>
+            <div class="page-header">
+                <h2>讀取資料</h2>
+                <div class="form-group">
+                    <label for="read-key">資料鍵名</label>
+                    <input type="text" class="form-control" id="read-key">
+                </div>
+                <button type="button" id="read" class="btn btn-default">讀取</button>
+                <h4 id="read-result"></h4>
+            </div>
+        </div>
+    </body>
+
+    <script type="application/javascript">
+        $('#write').click(() => {
+            $.post('http://localhost/action.php',{
+                action: 'write',
+                key: $('#write-key').val(),
+                value: $('#write-value').val()
+            }, () => {
+                $('#write-key').val(''),
+                $('#write-value').val('')
+            });
+        });
+
+        $('#sync').click(() => {
+            $.post('http://localhost/action.php', {
+                action: 'sync'
+            });
+        });
+
+        $('#read').click(() => {
+            $.post('http://localhost/action.php', {
+                action: 'read',
+                key: $('#read-key').val()
+            }, (data) => {
+                $('#read-result').html(data);
+            });
+        });
+    </script>
+</html>
