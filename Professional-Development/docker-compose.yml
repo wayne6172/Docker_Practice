@@ -1,11 +1,11 @@
-version: '3.8'
+version: '3.3'
 
 services:
   memcached:
     image: memcached:1.6
     container_name: ymdot-memcached
   mysql:
-    image: mysql:oracle
+    image: biarms/mysql:5.7
     container_name: ymdot_mysql
     ports:
       - 3306:3306
