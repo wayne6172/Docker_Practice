@@ -41,7 +41,7 @@
 
     <script type="application/javascript">
         $('#write').click(() => {
-            $.post('http://localhost/action.php',{
+            $.post('./action.php',{
                 action: 'write',
                 key: $('#write-key').val(),
                 value: $('#write-value').val()
@@ -52,13 +52,13 @@
         });
 
         $('#sync').click(() => {
-            $.post('http://localhost/action.php', {
+            $.post('./action.php', {
                 action: 'sync'
             });
         });
 
         $('#read').click(() => {
-            $.post('http://localhost/action.php', {
+            $.post('./action.php', {
                 action: 'read',
                 key: $('#read-key').val()
             }, (data) => {
