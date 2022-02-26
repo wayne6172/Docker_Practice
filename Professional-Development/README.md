@@ -2,7 +2,13 @@
 
 主要是建立由 Nginx + Memcached + Mysql + PHP 組成的小專案，最後將這專案製作成Docker compose.yml
 
-**需注意的是**，起好MySql後還需登入並執行以下SQL
+與master(amd-64)環境不同，RPi4的memcached、mysql、php-fpm皆為arm64的image檔案
+
+需注意php的lib是限定arm64的php-fpm:5.6下才做編譯 (已經編譯好並放在php/exts中)
+php的memcache lib是限定2.2.7版本，並且還得先安裝好zlib
+php的mysql lib則是需要把php-fpm-2.2.7.tar.xz解壓縮
+
+**需注意的是**起好MySql後還需登入並執行以下SQL
 
 |      url     | 帳號 |    密碼    |
 |:------------:|:----:|:----------:|
